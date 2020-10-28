@@ -18,6 +18,13 @@ const Ping: Command = {
 
     const prefix: string = args[0];
 
+    if (prefix.length > 3) {
+      return message.reply("Prefix should be 3 characters or less");
+    } 
+    if (!(/^(\w|\d|!|\$|%|\^|&|\*|<|>|~|`|\/|\\){1,3}$/.test(prefix))) {
+      return message.reply("Prefix contains not allowed characters");
+    }
+    
     try {
       await SettingsModel.updateOne(
         { guildId: message.guild?.id },
