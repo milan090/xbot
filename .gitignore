@@ -1,0 +1,9 @@
+node_modules
+config.json
+src/.env
+logs
+data
+dist
+dbdata
+
+.env

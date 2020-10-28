@@ -1,0 +1,14 @@
+data
+logs
+node_modules
+.git
+dbdata
+
+Dockerfile
+.dockerignore
+.gitignore
+config.json.example
+README.md
+
+src/.env
+src/.env.example

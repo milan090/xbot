@@ -1,0 +1,17 @@
+{
+  "defaultSettings": {
+    "prefix": "$",
+    "enabledCommands": [
+      "ping",
+      "help",
+      "enablewelcome",
+      "setprefix"
+    ],
+    "welcomeEnabled": false,
+    "welcomeChannelId": ""
+  },
+  "embedColor": "#0099ff",
+  "OwnerIDs": [
+    "3245258328413458121"
+  ]
+}
