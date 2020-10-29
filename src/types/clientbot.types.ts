@@ -89,7 +89,10 @@ export default class ClientBot extends Client {
       .setAuthor(this.user?.username.toUpperCase())
       .setTitle(title)
       .setURL("https://github.com/milan090/xbot")
-      .setDescription(content)
+    
+    if (content) {
+      embed.setDescription(content);
+    }
 
     if (fields) {
       embed.addFields(...fields);
@@ -97,7 +100,7 @@ export default class ClientBot extends Client {
 
     embed
       .setTimestamp()
-      .setFooter("Bot Author: Milan/milan090/codingdeck", "https://i.imgur.com/wSTFkRM.png");
+      .setFooter("Bot Author: milan090");
     return embed;
   }
 }
