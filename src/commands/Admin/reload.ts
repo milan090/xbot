@@ -8,7 +8,7 @@ const Ping: Command = {
   },
   
   help: {
-    name: "Reload",
+    name: "reload",
     category: "Admin",
     description: "Used to reload commands without reloading bot",
     usage: "reload [command name]"

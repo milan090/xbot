@@ -9,36 +9,38 @@ if (!process.env.DISCORD_API_KEY) {
   dotenv.config({ path: __dirname + "/.env" });
 }
 
-import { promisify } from "util";
 import ClientBot from "./types/clientbot.types";
+import { promisify } from "util";
 import { Command } from "./types/command.types";
 import glob from "glob";
 import { Intents } from "discord.js";
 
-const globReaddir = promisify(glob);
+const globReaddir = promisify(glob); // Makes glob to return a promise
 
 const client = new ClientBot({ ws: { intents: Intents.ALL } });
 
 const init = async function () {
   // Load all commands from commands folder
+  // Load ts files while testing, js in production after build
   const commandFiles: string[] = await globReaddir(`commands/**/*.${process.env.BUILD || "ts"}`, {
     cwd: __dirname,
   });
-  const commands: string[] = [];
+  const loadedCommands: string[] = [];
   const defaultEnabledCommands: string[] = [];
-  await Promise.all(
+
+  await Promise.all(  // Each command loading will return a promise
     commandFiles.map(async (f) => {
       const groups = /(?<category>\w+)\/(?<commandName>\w+).(t|j)s$/.exec(f)
         ?.groups;
       if (!groups || !groups.commandName || !groups.category) return;
       const { commandName } = groups;
-      if (commandName.startsWith("_")) return;
+      if (commandName.startsWith("_")) return; // _filename.ts will be ignored
 
       client.logger.info(`Loading Command: ${commandName}`);
       try {
         const command: Command = (await import(`./${f}`)).default;
         client.commands.set(commandName, command);
-        commands.push(commandName);
+        loadedCommands.push(commandName);
         if (command.conf.permLevel !== "Owner" && command.conf.enabledDefault) {
           defaultEnabledCommands.push(commandName);
         }
@@ -49,8 +51,9 @@ const init = async function () {
       }
     })
   );
-  client.logger.info(`Loaded a total of ${commands.length} Commands`);
+  client.logger.info(`Loaded a total of ${loadedCommands.length} Commands`);
 
+  // Load events from events folder
   const eventFiles: string[] = await globReaddir(`events/*.${process.env.BUILD || "ts"}`, {
     cwd: __dirname,
   });

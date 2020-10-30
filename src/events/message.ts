@@ -7,15 +7,14 @@ import { IMessage } from "../types/imessage.types";
 
 export default async function(client: ClientBot, message: Message): Promise<void> {
   if (message.author.bot) return; // Ignore bots
+  if (!message.guild) return; // Remove to allow non-guild messages
 
-  // Modify the Message
   const msg: IMessage = message as IMessage;
   if (msg.guild?.id){  // If not a guild message
     msg.settings = await client.getOrCreateGuildSettings(msg.guild.id);
   } else {
     msg.settings = client.defaultSettings;
   }
-  // console.log(msg.settings);
 
   if (!msg.content.startsWith(msg.settings.prefix)) return; // Ignore non-command messages
   
@@ -40,7 +39,9 @@ export default async function(client: ClientBot, message: Message): Promise<void
   if (cmd.conf.guildOnly && !msg.guild) {
     msg.reply("Command not found"); return; // If guild message sent to private
   }
+  
   if (cmd.conf.permLevel === "Owner" && !isOwner) return; // check if Owner level command
+  if (cmd.conf.permLevel === "Admin" && !msg.member?.hasPermission("ADMINISTRATOR")) return;
 
   // Run the command
   cmd.run(client, msg, args);

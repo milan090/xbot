@@ -4,11 +4,11 @@ import { Command } from "../../types/command.types";
 const Ping: Command = {
   conf: {
     guildOnly: true,
-    permLevel: "User",
+    permLevel: "Admin",
     enabledDefault: true,
   },
   help: {
-    name: "Setprefix",
+    name: "setprefix",
     category: "Admin",
     description: "Change the bot prefix for your server.",
     usage: "setprefix [prefix]"

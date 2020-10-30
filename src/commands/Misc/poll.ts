@@ -12,7 +12,7 @@ const Ping: Command = {
     enabledDefault: true,
   },
   help: {
-    name: "Poll",
+    name: "poll",
     category: "Misc",
     description: "Help command displays all available commands and their usage",
     usage: "poll \"poll question goes here\" \"option 1\" \"option 2\"....",
@@ -38,6 +38,7 @@ const Ping: Command = {
             `:bar_chart: Poll by ${message.author}`,
             embeded
           );
+          if (message.guild?.me?.hasPermission("MANAGE_MESSAGES")) message.delete();
           return optionsEmojies
             .slice(0, options.length)
             .forEach((optionsEmoji) => {

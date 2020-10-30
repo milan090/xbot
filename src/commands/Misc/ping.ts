@@ -9,7 +9,7 @@ const Ping: Command = {
     enabledDefault: true,
   },
   help: {
-    name: "Ping",
+    name: "ping",
     category: "Misc",
     description: "The classic ping! Returns network and API latency",
     usage: "ping"
