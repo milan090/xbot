@@ -6,7 +6,13 @@
       "help",
       "enablewelcome",
       "setprefix",
-      "meme
+      "meme",
+      "poll",
+      "play",
+      "skip",
+      "stop",
+      "queue",
+      "remove"
     ],
     "welcomeEnabled": false,
     "welcomeChannelId": ""
