@@ -18,7 +18,7 @@ export default async function(client: ClientBot, message: Message): Promise<void
 
   if (!msg.content.startsWith(msg.settings.prefix)) return; // Ignore non-command messages
   
-  const args: string[] = msg.content.slice(msg.settings.prefix.length).trim().split(/ +/g);
+  const args: string[] = msg.content.slice(msg.settings.prefix.length).trim().split(/\s+/);
   if (typeof args[0] !== "string") return;
   const commandName: string = args.shift()?.toLowerCase() as string;
   const isOwner: boolean = OwnerIDs.includes(msg.author.id);

@@ -87,8 +87,8 @@ export default class ClientBot extends Client {
     const embed: MessageEmbed = new MessageEmbed()
       .setColor(config.embedColor)
       .setAuthor(this.user?.username.toUpperCase())
-      .setTitle(title)
       .setURL("https://github.com/milan090/xbot")
+      .setTitle(title)
     
     if (content) {
       embed.setDescription(content);
