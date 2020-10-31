@@ -43,6 +43,10 @@ export default async function(client: ClientBot, message: Message): Promise<void
   if (cmd.conf.permLevel === "Owner" && !isOwner) return; // check if Owner level command
   if (cmd.conf.permLevel === "Admin" && !msg.member?.hasPermission("ADMINISTRATOR")) return;
 
+  if (cmd.help.category === "Music" && !msg.member?.voice.channel) {
+    msg.reply("You are not connected to a voice chat to use this command");
+    return;
+  }
   // Run the command
   cmd.run(client, msg, args);
 }
