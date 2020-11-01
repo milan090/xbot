@@ -7,7 +7,7 @@ const Ping: Command = {
     enabledDefault: true,
   },
   help: {
-    name: "Meme",
+    name: "meme",
     category: "Misc",
     description: "Sends you a generated meme",
     usage: "meme [meme_name] [text_top] [text_bottom]"

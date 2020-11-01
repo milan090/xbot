@@ -1,16 +1,15 @@
 import { TextChannel, VoiceChannel, VoiceConnection } from "discord.js";
-import { Url } from "url";
 
-export interface Song {
+export interface ISong {
   title: string;
-  url: Url;
+  url: string;
 }
 
-export interface ServerQueue {
+export interface IServerMusicQueue {
   textChannel: TextChannel;
   voiceChannel: VoiceChannel;
   connection: (VoiceConnection | null);
-  songs: Song[];
+  songs: Array<ISong>;
   volume: number;
   playing: boolean;
 }

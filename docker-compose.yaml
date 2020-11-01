@@ -14,8 +14,6 @@ services:
     image: mongo:3-xenial
     container_name: mongo
     restart: unless-stopped
-    ports: 
-      - "27017:27017"
     environment: 
       - MONGO_URI=$MONGO_URI
     volumes: 

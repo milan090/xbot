@@ -3,7 +3,7 @@ import { Command } from "./command.types";
 import winston from "winston";
 import Logger from "../config/winston";
 import { promisify } from "util";
-import { ServerQueue } from "./music.types";
+import { IServerMusicQueue } from "./music.types";
 import { SettingsModel } from "../models/settings/settings.model";
 import {
   ISettingsDocument,
@@ -14,14 +14,14 @@ import { connect } from "../db";
 
 export default class ClientBot extends Client {
   commands: Map<string, Command> = new Map();
-  queues: Map<string, ServerQueue> = new Map();
+  serverMusicQueues: Map<string, IServerMusicQueue> = new Map();
 
   defaultSettings: ISettings = {
     guildId: "default",
     ...defaultSettings,
   };
 
-  logger: winston.Logger = Logger;
+  logger: winston.Logger = Logger
   mode: "MAINTENANCE" | "ACTIVE" = "MAINTENANCE";
   wait = promisify(setTimeout);
 
@@ -62,7 +62,7 @@ export default class ClientBot extends Client {
     return settings;
   }
 
-  createServerQueue(message: Message): ServerQueue | undefined {
+  createServerQueue(message: Message): IServerMusicQueue | undefined {
     if (!message.member?.voice.channel) return;
     if (message.channel.type !== "text") return;
     return {
@@ -87,8 +87,8 @@ export default class ClientBot extends Client {
     const embed: MessageEmbed = new MessageEmbed()
       .setColor(config.embedColor)
       .setAuthor(this.user?.username.toUpperCase())
-      .setTitle(title)
       .setURL("https://github.com/milan090/xbot")
+      .setTitle(title)
     
     if (content) {
       embed.setDescription(content);
@@ -98,9 +98,9 @@ export default class ClientBot extends Client {
       embed.addFields(...fields);
     }
 
-    embed
-      .setTimestamp()
-      .setFooter("Bot Author: milan090");
+    // embed
+    //   .setTimestamp()
+    //   .setFooter("Bot Author: milan090");
     return embed;
   }
 }

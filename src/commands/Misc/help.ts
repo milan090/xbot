@@ -7,7 +7,7 @@ const Ping: Command = {
     enabledDefault: true,
   },
   help: {
-    name: "Help",
+    name: "help",
     category: "Misc",
     description: "Help command displays all available commands and their usage",
     usage: "help",
@@ -34,9 +34,12 @@ const Ping: Command = {
         );
       }
     } else {
+      const isAdmin: boolean | undefined = message.member?.hasPermission("ADMINISTRATOR");
       const commands: Array<string> = enabledCommands
         .map((command) => {
-          return client.commands.get(command)?.help.name;
+          const cmd = client.commands.get(command);
+          if (cmd?.conf.permLevel === "Admin" && !isAdmin) return;
+          return cmd?.help.name;
         })
         .filter((e) => e !== undefined) as Array<string>;
 

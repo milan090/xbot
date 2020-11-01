@@ -9,7 +9,7 @@ const Ping: Command = {
   },
 
   help: {
-    name: "Enable Welcome",
+    name: "enablewelcome",
     category: "Admin",
     description:
       "Enable welcome message whenever a new member joins the Server",

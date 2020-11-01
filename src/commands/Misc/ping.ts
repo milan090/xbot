@@ -9,7 +9,7 @@ const Ping: Command = {
     enabledDefault: true,
   },
   help: {
-    name: "Ping",
+    name: "ping",
     category: "Misc",
     description: "The classic ping! Returns network and API latency",
     usage: "ping"
@@ -17,11 +17,11 @@ const Ping: Command = {
   run: async function(client: ClientBot, message: Message) {
     const msg: Message = await message.reply("Wait a sec...");
     const embed: MessageEmbed = client.newMessageEmbed(
-      "Ping",
+      "🏓 Ping",
       "",
       [
         {
-          name: "Latency",
+          name: "Roundtrip Latency",
           value: `${msg.createdTimestamp - message.createdTimestamp}ms`,
           inline: true
         },
@@ -32,7 +32,7 @@ const Ping: Command = {
         }
       ]
     )
-    message.channel.send(embed);
+    msg.edit(embed);
   }
 }
 
