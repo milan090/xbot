@@ -2,7 +2,7 @@ import { Guild, GuildMember, MessageEmbed, Role } from "discord.js";
 import { ReactionRoleModel } from "../../models/reactionrole/reactionrole.model";
 import { Command } from "../../types/command.types";
 
-import { reactionRoleEmojies } from "./_reactionroleEmojies.json";
+import { reactionRoleEmojies } from "../Admin/_reactionroleEmojies.json";
 
 const regex = /".+?"/g;
 
@@ -15,7 +15,7 @@ const ReactionRole: Command = {
   
   help: {
     name: "reactionrole",
-    category: "Admin",
+    category: "Misc",
     description: "This command will send a reaction role message to a specific channel",
     usage: "reactionrole \"roleid1\" \"roleid2\"......"
   },
