@@ -98,9 +98,9 @@ export default class ClientBot extends Client {
       embed.addFields(...fields);
     }
 
-    embed
-      .setTimestamp()
-      .setFooter("Bot Author: milan090");
+    // embed
+    //   .setTimestamp()
+    //   .setFooter("Bot Author: milan090");
     return embed;
   }
 }
