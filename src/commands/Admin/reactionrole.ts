@@ -20,7 +20,7 @@ const ReactionRole: Command = {
   },
 
   run: async function (client, message, args) {
-    if (!args[1]) return message.reply("No arguments provided");
+    if (!args[0]) return message.reply("No arguments provided");
 
     // Check if bot got perms to assign roles
     if (!message.guild?.me?.hasPermission("MANAGE_ROLES")) {
