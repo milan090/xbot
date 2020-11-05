@@ -7,7 +7,6 @@ import ClientBot from "../types/clientbot.types";
 export default async function(client: ClientBot, reaction: MessageReaction, user: User): Promise<void> {
   if (!reaction.message.guild || user.bot) return;
   const { guild } = reaction.message;
-  
   const reactionRole: IReactionRoleDocument | null = await ReactionRoleModel.findOne({
     guildId: guild.id,
     messageId: reaction.message.id
@@ -30,7 +29,7 @@ export default async function(client: ClientBot, reaction: MessageReaction, user
 
   try {
     const guildMember: GuildMember = await guild.members.fetch(user.id);
-    await guildMember.roles.add(roleToAdd);
+    await guildMember.roles.remove(roleToAdd);
   } catch (error) {
     client.logger.error(error);
   }

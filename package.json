@@ -7,7 +7,9 @@
     "start": "ts-node dist/main.js",
     "dev": "nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/main.ts\"",
     "lint": "eslint . --ext .ts",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "db:start": "docker-compose -f ./docker-compose.test.yml up -d",
+    "db:stop": "docker-compose -f ./docker-compose.test.yml down"
   },
   "keywords": [
     "hacktoberfest",

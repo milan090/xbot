@@ -3,12 +3,20 @@ logs
 node_modules
 .git
 dbdata
+dbtestdata
 
+.env
 Dockerfile
 .dockerignore
 .gitignore
 config.json.example
 README.md
+CONTRIBUTING.md
+LICENSE
+
+.eslint*
+.prettier*
+
 
 src/.env
 src/.env.example

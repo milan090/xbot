@@ -5,7 +5,7 @@ if (Number(process.version.slice(1).split(".")[0]) < 12) {
 }
 
 import dotenv from "dotenv";
-if (!process.env.DISCORD_API_KEY) {
+if (process.env.NODE_ENV !== "production") {
   dotenv.config({ path: __dirname + "/.env" });
 }
 

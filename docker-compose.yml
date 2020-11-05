@@ -5,16 +5,23 @@ services:
     image: milan090/xbot:latest
     container_name: nodejs
     restart: unless-stopped
+    depends_on: 
+      - mongo
     environment: 
       - DISCORD_API_KEY=$DISCORD_API_KEY
       - MONGO_URI=$MONGO_URI
+      - MONGO_USER=$MONGO_USER
+      - MONGO_PASS=$MONGO_PASS
     links: 
       - mongo
   mongo:
     image: mongo:3-xenial
     container_name: mongo
     restart: unless-stopped
+    ports:
+      - "27017:27017"
     environment: 
-      - MONGO_URI=$MONGO_URI
+      - MONGO_INITDB_ROOT_USERNAME=$MONGO_USER
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASS
     volumes: 
       - ./dbdata:/data/db

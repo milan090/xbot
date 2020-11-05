@@ -12,7 +12,8 @@
       "skip",
       "stop",
       "queue",
-      "remove"
+      "remove",
+      "reactionrole"
     ],
     "welcomeEnabled": false,
     "welcomeChannelId": ""

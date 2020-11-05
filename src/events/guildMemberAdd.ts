@@ -5,9 +5,7 @@ import ClientBot from "../types/clientbot.types";
 
 
 export default async function(client: ClientBot, member:GuildMember): Promise<void> {
-  console.log("AAAA");
   const guild: Guild = member.guild;
-  client.logger.info(`${member.user.username} has joined the server`);
   try {
     const settings: ISettings = await SettingsModel.findOneOrCreate(guild.id);
     if (!settings.welcomeEnabled) return;
